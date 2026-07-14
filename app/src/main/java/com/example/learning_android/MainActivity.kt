@@ -1,11 +1,11 @@
 package com.example.learning_android
 
+import android.R.attr.text
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -29,6 +31,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.learning_android.ui.theme.LearningAndroidTheme
+import androidx.compose.ui.platform.LocalContext
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -49,6 +52,8 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun LearningScreen(name: String, modifier: Modifier = Modifier) {
+    val context = LocalContext.current
+
     Column(
         modifier = modifier.fillMaxSize(),
         horizontalAlignment = Alignment.CenterHorizontally,
@@ -104,15 +109,17 @@ fun LearningScreen(name: String, modifier: Modifier = Modifier) {
 
         Spacer(modifier = Modifier.height(300.dp))
 
-        Text(
-            text = "Start Learning",
-            color = Color(0xFFFF7F50),
-            fontSize = 30.sp,
-            modifier = Modifier
-                .background(color = Color(0xFF1E1E24), shape = RoundedCornerShape(4.dp))
-                .border(1.dp, Color.Black, RoundedCornerShape(4.dp))
-                .padding(16.dp)
-        )
+        Button(
+            onClick = { Toast.makeText(context, "Starting...", Toast.LENGTH_LONG).show()},
+            modifier = Modifier.padding(16.dp),
+            enabled = true,
+            shape = RoundedCornerShape(12.dp),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Color.Black,
+                containerColor = Color.Gray
+            ),
+            elevation = ButtonDefaults.buttonElevation(defaultElevation = 10.dp),
+        ) {Text(text = "Start Learning")}
     }
 }
 
