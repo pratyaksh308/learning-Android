@@ -26,9 +26,10 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.learning_android.ui.theme.LearningAndroidTheme
+import androidx.navigation.compose.*
 
 @Composable
-fun HomeScreen(name: String, modifier: Modifier = Modifier) {
+fun HomeScreen(modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
     Column(
@@ -37,7 +38,7 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
         verticalArrangement = Arrangement.Center
     ) {
         Text(
-            text = "$name Learning",
+            text = "Android Learning",
             fontWeight = FontWeight.Bold,
             fontSize = 50.sp,
             color = Color.Red,
@@ -104,6 +105,6 @@ fun HomeScreen(name: String, modifier: Modifier = Modifier) {
 @Composable
 fun HomeScreenPreview() {
     LearningAndroidTheme {
-        HomeScreen("Android")
+        HomeScreen()
     }
 }
