@@ -5,6 +5,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.learning_android.screens.HomeScreen
+import com.example.learning_android.screens.TopicsScreen
 
 @Composable
 fun AppNavigation() {
@@ -15,7 +16,15 @@ fun AppNavigation() {
         startDestination = "home"
     ) {
         composable("home") {
-            HomeScreen()
+            HomeScreen(
+                onStartLearningClick = {
+                    navController.navigate("topics")
+                }
+            )
+        }
+
+        composable("topics") {
+            TopicsScreen()
         }
     }
 }

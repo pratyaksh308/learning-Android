@@ -1,6 +1,5 @@
 package com.example.learning_android.screens
 
-import android.widget.Toast
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -26,10 +25,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.learning_android.ui.theme.LearningAndroidTheme
-import androidx.navigation.compose.*
 
 @Composable
-fun HomeScreen(modifier: Modifier = Modifier) {
+fun HomeScreen(onStartLearningClick: () -> Unit, modifier: Modifier = Modifier) {
     val context = LocalContext.current
 
     Column(
@@ -88,7 +86,7 @@ fun HomeScreen(modifier: Modifier = Modifier) {
         Spacer(modifier = Modifier.height(300.dp))
 
         Button(
-            onClick = { Toast.makeText(context, "Starting...", Toast.LENGTH_LONG).show()},
+            onClick = onStartLearningClick,
             modifier = Modifier.padding(16.dp),
             enabled = true,
             shape = RoundedCornerShape(12.dp),
@@ -105,6 +103,8 @@ fun HomeScreen(modifier: Modifier = Modifier) {
 @Composable
 fun HomeScreenPreview() {
     LearningAndroidTheme {
-        HomeScreen()
+        HomeScreen(
+            onStartLearningClick = {}
+        )
     }
 }
