@@ -1,12 +1,18 @@
 package com.example.learning_android.screens
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
+import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.Card
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -40,15 +46,32 @@ fun TopicsScreen() {
 @Composable
 fun TopicItem(topic: String) {
     Card(
-        modifier = Modifier.fillMaxSize(),
+        modifier = Modifier.fillMaxWidth(),
         onClick = {
 
         }
     ){
-        Text(
-            text = topic,
-            modifier = Modifier.padding(12.dp),
-        )
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(12.dp)
+        ) {
+            Icon(
+                imageVector = Icons.Filled.Book,
+                contentDescription = "Topic",
+            )
+
+            Text(
+                text = topic,
+                modifier = Modifier
+                    .weight(1f)
+            )
+
+            Icon(
+                imageVector = Icons.AutoMirrored.Filled.KeyboardArrowRight,
+                contentDescription = "Open",
+            )
+        }
     }
 }
 
