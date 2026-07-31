@@ -1,34 +1,39 @@
 package com.example.learning_android.screens
 
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
-import androidx.compose.runtime.Composable
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
-import androidx.compose.material.icons.filled.Book
 import androidx.compose.material3.Card
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.example.learning_android.R
+import com.example.learning_android.model.Topic
 import com.example.learning_android.ui.theme.LearningAndroidTheme
 
 @Composable
 fun TopicsScreen() {
     val topics = listOf(
-        "UI Components",
-        "Layouts",
-        "Navigation",
-        "State Management",
-        "Animations",
-        "Firebase",
-        "Google Maps",
+        Topic("UI Components", image = R.drawable.ic_widgets),
+        Topic("Layouts", image = R.drawable.ic_widgets),
+        Topic("Navigation", image = R.drawable.ic_widgets),
+        Topic("State Management", image = R.drawable.ic_widgets),
+        Topic("Animations", image = R.drawable.ic_widgets),
+        Topic("Firebase", image = R.drawable.ic_widgets),
+        Topic("Google Maps", image = R.drawable.ic_widgets),
     )
 
     LazyColumn(
@@ -44,7 +49,7 @@ fun TopicsScreen() {
 }
 
 @Composable
-fun TopicItem(topic: String) {
+fun TopicItem(topic: Topic) {
     Card(
         modifier = Modifier.fillMaxWidth(),
         onClick = {
@@ -56,15 +61,18 @@ fun TopicItem(topic: String) {
                 .fillMaxWidth()
                 .padding(12.dp)
         ) {
-            Icon(
-                imageVector = Icons.Filled.Book,
+            Image(
+                painter = painterResource(topic.image),
                 contentDescription = "Topic",
             )
 
+            Spacer(
+                modifier = Modifier.width(5.dp)
+            )
+
             Text(
-                text = topic,
-                modifier = Modifier
-                    .weight(1f)
+                text = topic.title,
+                modifier = Modifier.weight(1f)
             )
 
             Icon(
