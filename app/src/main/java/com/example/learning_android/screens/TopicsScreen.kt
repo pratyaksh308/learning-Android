@@ -13,7 +13,10 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.filled.KeyboardArrowRight
 import androidx.compose.material3.Card
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.TopAppBar
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -24,6 +27,7 @@ import com.example.learning_android.R
 import com.example.learning_android.model.Topic
 import com.example.learning_android.ui.theme.LearningAndroidTheme
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun TopicsScreen() {
     val topics = listOf(
@@ -36,14 +40,26 @@ fun TopicsScreen() {
         Topic("Google Maps", image = R.drawable.ic_widgets),
     )
 
-    LazyColumn(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-    ) {
-        items(topics) { topic ->
-            TopicItem(topic = topic)
+    Scaffold (
+        topBar = {
+            TopAppBar(
+                title = {
+                    Text("Learning Android")
+                }
+            )
+        }
+    ){ paddingValues ->
+
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+        ) {
+            items(topics) { topic ->
+                TopicItem(topic = topic)
+            }
         }
     }
 }
